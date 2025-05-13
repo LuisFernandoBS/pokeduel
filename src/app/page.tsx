@@ -1,103 +1,175 @@
+'use client'
+import { useState, useEffect } from 'react';
 import Image from "next/image";
+import Card from "../components/card";
+import PainelComparativo from "../components/painelComparativo";
+import { getAllCards, getCardById } from "../services/tcgdexService";
+
+interface CardSimples {
+  id: string;
+  name: string;
+  localId: string;
+  image?: string;
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+  const [CardIniciado1, setCardIniciado1] = useState(false);
+  const [CardIniciado2, setCardIniciado2] = useState(false);
+  const [card1, setCard1] = useState(null);
+  const [card2, setCard2] = useState(null);
+  const [carregandoServico, setCarregandoServico] = useState(false);
+  const [listaCartas, setListaCartas] = useState([]);
+  const [raridadesExistentes, setRaridadesExistentes] = useState<string[]>([]);
+
+  useEffect(() => {
+    carregarListaDeCartas();
+  }, []);
+
+  // useEffect(() => {
+  //   loopRaridade(listaCartas);
+  // }, [listaCartas]);
+
+  const iniciarCard = async (div:number) => {
+    setCarregandoServico(true);
+    await carregarCard(div);
+    if (div === 1) {
+      setCardIniciado1(true);
+      setCarregandoServico(false);
+      return;
+    }
+    setCardIniciado2(true);
+    setCarregandoServico(false);
+  };
+
+  const carregarCard = async (div:number) => {
+    let categoriaPokemon = false;
+    let card = null;
+    while (categoriaPokemon === false) {
+      card = await sortearCarta();
+      if (card.category && card.category == "Pokemon") {
+        categoriaPokemon = true;
+        break;
+      }
+    }
+    console.log(card);
+    if (div === 1) {
+      setCard1(card);
+      return;
+    } 
+    setCard2(card);
+  };
+
+  const carregarListaDeCartas = async () => {
+    setCarregandoServico(true);
+    const retorno = await getAllCards();
+    const listaCartasComImagem = retorno.filter((carta: any) => {
+      return carta.image && carta.image !== "";
+    })
+    setListaCartas(listaCartasComImagem);
+    setCarregandoServico(false);
+  }
+
+  const sortearCarta = () => {
+    const randomIndex = Math.floor(Math.random() * listaCartas.length);
+    const cartaSorteada:CardSimples = listaCartas[randomIndex];
+    const cartaCompleta = getCardById(cartaSorteada.id);
+    return cartaCompleta;
+  }
+
+  const loopRaridade = async (lista: any) => {
+    const raridadesExistentes = new Set<string>();
+
+    const promessas = lista.map(async (carta: any) => {
+      const cartaCompleta = await getCardById(carta.id);
+      if (cartaCompleta.rarity && cartaCompleta.category == "Pokemon") {
+        raridadesExistentes.add(cartaCompleta.rarity);
+        setRaridadesExistentes(Array.from(raridadesExistentes));
+      }
+    });
+
+    await Promise.all(promessas);
+  };
+
+
+
+  return (
+    <div className="grid grid-cols-5 2xl:grid-cols-7 gap-4">
+        <div className="col-span-5 2xl:col-span-7 py-5 h-auto max-h-[120px]">
+          <div className="flex justify-center items-center gap-4">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/assets/img/logo.png"
+              alt="pokeduel"
+              width={60}
+              height={60}
+              className="rounded object-cover"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <h3 className="font-medium text-[40px]" style={{ fontFamily: 'PokeFont' }}>Poke<span className="text-[#EC003F]">Duel</span></h3>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-2 flex justify-end items-center">
+          <div className="grid w-full grid-cols-11 grid-rows-1">
+            <div className="col-span-5 row-start-1 flex justify-end items-center py-3 px-2">
+              {!CardIniciado1 && (
+                <div className="absolute w-70 justify-center text-center z-20">
+                  <button
+                    className={`${carregandoServico?'cursor-progress':'cursor-pointer'} inline-block rounded-sm bg-indigo-600 px-8 py-3 text-lg font-medium text-white transition hover:scale-110 hover:-rotate-2 focus:ring-3 focus:outline-hidden`}
+                    style={{ fontFamily: 'PokeFont' }}
+                    onClick={() => iniciarCard(1)}
+                    disabled={carregandoServico}
+                  >
+                    {carregandoServico ? 'Carregando...' : 'Iniciar'}
+                  </button>
+                </div>
+              )}
+              <div className="relative w-70">
+                <div
+                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-1500 ${
+                    CardIniciado1 ? 'opacity-0' : 'opacity-100'
+                  }`}
+                ></div>
+                <Card card={card1} numCard={1} />
+              </div>
+            </div>
+            <div className="col-span-1 row-start-1 flex justify-center items-center">
+              <Image
+                src="/assets/img/versus.png"
+                alt="versus"
+                width={70}
+                height={70}
+                className="rounded object-cover"
+              />
+            </div>
+            <div className="col-span-5 row-start-1 flex justify-start items-center py-3 px-2">
+              {!CardIniciado2 && (
+                <div className="absolute w-70 justify-center text-center z-20">
+                  <button
+                    className={`${carregandoServico?'cursor-progress':'cursor-pointer'} inline-block rounded-sm bg-indigo-600 px-8 py-3 text-lg font-medium text-white transition hover:scale-110 hover:-rotate-2 focus:ring-3 focus:outline-hidden`}
+                    style={{ fontFamily: 'PokeFont' }}
+                    onClick={() => iniciarCard(2)}
+                  >
+                    {carregandoServico ? 'Carregando...' : 'Iniciar'}
+                  </button>
+                </div>
+              )}
+              <div className="relative w-70">
+                <div
+                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-1500 ${
+                    CardIniciado2 ? 'opacity-0' : 'opacity-100'
+                  }`}
+                ></div>
+                <Card card={card2} numCard={2}/>
+              </div>
+            </div>
+          </div>
+        </div>
+        {CardIniciado1 && CardIniciado2 && (
+          <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-3 bg-yellow-500 flex justify-center items-center rounded-xl px-1 py-1">
+            <div className="w-full">
+                <PainelComparativo card1={card1} card2={card2} />
+            </div>
+          </div>
+        )}
     </div>
   );
 }

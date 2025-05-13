@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'PokeFont';
+  src: url('../../public/fonts/Righteous-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #101828;
+  --foreground: #ededed;
+  --vermelho: #EC003F;
 }
 
 @theme inline {
@@ -14,7 +22,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #101828;
     --foreground: #ededed;
   }
 }
