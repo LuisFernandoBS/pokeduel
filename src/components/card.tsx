@@ -13,7 +13,7 @@ export default function Card({ card, numCard }: { card: any, numCard: number }) 
     >
         <img
             alt=""
-            src={`${cardImagem}/high.webp`}
+            src={`${cardImagem ??'https://assets.tcgdex.net/pt/swsh/swsh8/86'}/high.webp`}
             className="h-96 w-70 object-cover"
         />
 

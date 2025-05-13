@@ -124,7 +124,7 @@ export default function Home() {
               )}
               <div className="relative w-70">
                 <div
-                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-1500 ${
+                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-3500 ${
                     CardIniciado1 ? 'opacity-0' : 'opacity-100'
                   }`}
                 ></div>
@@ -154,7 +154,7 @@ export default function Home() {
               )}
               <div className="relative w-70">
                 <div
-                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-1500 ${
+                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-3500 ${
                     CardIniciado2 ? 'opacity-0' : 'opacity-100'
                   }`}
                 ></div>

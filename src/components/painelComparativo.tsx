@@ -26,21 +26,21 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
 
     const resultadoHp = () => {
         if (cardHp1 > cardHp2) return { nome: cardNome1, cor: "text-blue-500" };
-        if (cardHp1 < cardHp2) return { nome: cardNome2, cor: "text-red-700" };
+        if (cardHp1 < cardHp2) return { nome: cardNome2, cor: "text-red-500" };
         return { nome: "Empate!", cor: "text-yellow-400" };
     };
 
     const resultadoTipo = () => {
         const resultado = compararTipos(cardTipo1, cardTipo2);
         if (resultado === 1) return { nome: cardNome1, cor: "text-blue-500" };
-        if (resultado === 2) return { nome: cardNome2, cor: "text-red-700" };
+        if (resultado === 2) return { nome: cardNome2, cor: "text-red-500" };
         return { nome: "Sem Vantagens!", cor: "text-yellow-400" };
     };
 
     const resultadoRaridade = () => {
         const resultado = compararRaridade(cardRaridade1, cardRaridade2);
         if (resultado === 1) return { nome: cardNome1, cor: "text-blue-500" };
-        if (resultado === 2) return { nome: cardNome2, cor: "text-red-700" };
+        if (resultado === 2) return { nome: cardNome2, cor: "text-red-500" };
         return { nome: "Empate!", cor: "text-yellow-400" };
     };
 
@@ -62,7 +62,7 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
             return 0;
         }, 0));
         if (maiorAtaque1 > maiorAtaque2) return { nome: cardNome1, cor: "text-blue-500" };
-        if (maiorAtaque1 < maiorAtaque2) return { nome: cardNome2, cor: "text-red-700" };
+        if (maiorAtaque1 < maiorAtaque2) return { nome: cardNome2, cor: "text-red-500" };
         return { nome: "Empate!", cor: "text-yellow-400" };
     }
 
@@ -74,28 +74,28 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
 
     return (
         <div className="grid grid-cols-4 gap-4 bg-gray-900 rounded-xl py-4 px-4">
-            <div className="col-span-1 row-start-1 flex justify-center items-center border-1 border-yellow-400 rounded-xl h-full py-2">
+            <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorHp} rounded-xl h-full py-2`}>
                 <div className="flex flex-col items-center">
                     <h1 className="text-1xl font-bold text-white">HP</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{cardHp1} <span className='font-bold'>X</span> {cardHp2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorHp}`}>{nomeVencedorHp}</h1>
                 </div>
             </div>
-            <div className="col-span-1 row-start-1 flex justify-center items-center border-1 border-yellow-400 rounded-xl h-full py-2">
+            <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorTipo} rounded-xl h-full py-2`}>
                 <div className="flex flex-col items-center">
                     <h1 className="text-1xl font-bold text-white">Tipo</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{cardTipo1} <span className='font-bold'>X</span> {cardTipo2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorTipo}`}>{nomeVencedorTipo}</h1>
                 </div>
             </div>
-            <div className="col-span-1 row-start-1 flex justify-center items-center border-1 border-yellow-400 rounded-xl h-full py-2">
+            <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorRaridade} rounded-xl h-full py-2`}>
                 <div className="flex flex-col items-center">
                     <h1 className="text-1xl font-bold text-white">Raridade</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{cardRaridade1} <span className='font-bold'>X</span> {cardRaridade2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorRaridade}`}>{nomeVencedorRaridade}</h1>
                 </div>
             </div>
-            <div className="col-span-1 row-start-1 flex justify-center items-center border-1 border-yellow-400 rounded-xl h-full py-2">
+            <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorAtaque} rounded-xl h-full py-2`}>
                 <div className="flex flex-col items-center">
                     <h1 className="text-1xl font-bold text-white">Ataque</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{maiorAtaque1} <span className='font-bold'>X</span> {maiorAtaque2}</h1>
