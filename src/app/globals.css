@@ -32,3 +32,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bg-painel {
+  background: #2B7FFF;
+background: -webkit-linear-gradient(131deg, rgba(43, 127, 255, 1) 48%, rgba(236, 0, 63, 1) 57%);
+background: -moz-linear-gradient(131deg, rgba(43, 127, 255, 1) 48%, rgba(236, 0, 63, 1) 57%);
+background: linear-gradient(131deg, rgba(43, 127, 255, 1) 48%, rgba(236, 0, 63, 1) 57%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2B7FFF", endColorstr="#EC003F", GradientType=0);
+}

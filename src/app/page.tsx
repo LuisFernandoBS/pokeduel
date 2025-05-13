@@ -164,7 +164,7 @@ export default function Home() {
           </div>
         </div>
         {CardIniciado1 && CardIniciado2 && (
-          <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-3 bg-yellow-500 flex justify-center items-center rounded-xl px-1 py-1">
+          <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-3 bg-painel flex justify-center items-center rounded-xl px-1 py-1">
             <div className="w-full">
                 <PainelComparativo card1={card1} card2={card2} />
             </div>
