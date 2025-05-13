@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PokeDuel",
   description: "Projeto PokeDuel",
+  icons: {
+    icon: "/icon.ico",
+  },
 };
 
 export default function RootLayout({
