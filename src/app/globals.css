@@ -40,3 +40,67 @@ background: -moz-linear-gradient(131deg, rgba(43, 127, 255, 1) 48%, rgba(236, 0,
 background: linear-gradient(131deg, rgba(43, 127, 255, 1) 48%, rgba(236, 0, 63, 1) 57%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2B7FFF", endColorstr="#EC003F", GradientType=0);
 }
+
+#imagem-carregamento {
+  animation: animacaoCompletaPokebola 4s ease-in-out 0s infinite;
+}
+
+@keyframes animacaoCompletaPokebola {
+  /* Entrada quicando (0% a 50%) */
+  0% {
+    opacity: 0;
+    transform: translateY(-180px) scale(1, 1) rotate(0deg);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateY(0) scale(1.2, 0.8) rotate(0deg); /* achatado no impacto */
+  }
+
+  20% {
+    transform: translateY(0) scale(1, 1) rotate(0deg); /* volta ao normal */
+  }
+
+  25% {
+    transform: translateY(-90px) scale(1, 1) rotate(0deg);
+  }
+
+  33.5% {
+    transform: translateY(0) scale(1.15, 0.85) rotate(0deg);
+  }
+
+  36% {
+    transform: translateY(0) scale(1, 1) rotate(0deg);
+  }
+
+  39.5% {
+    transform: translateY(-45px) scale(1, 1) rotate(0deg);
+  }
+
+  44% {
+    transform: translateY(0) scale(1.1, 0.9) rotate(0deg);
+  }
+
+  45.5% {
+    transform: translateY(0) scale(1, 1) rotate(0deg);
+  }
+
+  46% {
+    transform: translateY(-15px) scale(1, 1) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(0) scale(1.05, 0.95) rotate(0deg);
+  }
+
+  /* Saída rotacionando (50% a 100%) */
+  50.01% {
+    opacity: 1;
+    transform: translateX(0) scale(1, 1) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-250px) scale(1, 1) rotate(-200deg);
+  }
+}

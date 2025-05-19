@@ -2,8 +2,11 @@
 import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Card from "../components/card";
+import ModalSelectCards from "../components/modalSelectCards";
 import PainelComparativo from "../components/painelComparativo";
 import { getAllCards, getCardById } from "../services/tcgdexService";
+import { ListaCardProvider } from "../context/ListaCardsContext";
+import { CartasExcluidasSet } from "../data/listaCartasExcluidas"
 
 interface CardSimples {
   id: string;
@@ -20,14 +23,15 @@ export default function Home() {
   const [card2, setCard2] = useState(null);
   const [carregandoServico, setCarregandoServico] = useState(false);
   const [listaCartas, setListaCartas] = useState([]);
-  const [raridadesExistentes, setRaridadesExistentes] = useState<string[]>([]);
+  const [energiaExistentes, setEnergiaExistentes] = useState<string[]>([]);
+  const [treinadoresExistentes, setTreinadoresExistentes] = useState<string[]>([]);
 
   useEffect(() => {
     carregarListaDeCartas();
   }, []);
 
   // useEffect(() => {
-  //   loopRaridade(listaCartas);
+  //   loop(listaCartas);
   // }, [listaCartas]);
 
   const iniciarCard = async (div:number) => {
@@ -64,7 +68,8 @@ export default function Home() {
     setCarregandoServico(true);
     const retorno = await getAllCards();
     const listaCartasComImagem = retorno.filter((carta: any) => {
-      return carta.image && carta.image !== "";
+      const nome = carta.name?.trim();      
+      return carta.image && nome && !CartasExcluidasSet.has(nome);
     })
     setListaCartas(listaCartasComImagem);
     setCarregandoServico(false);
@@ -77,24 +82,33 @@ export default function Home() {
     return cartaCompleta;
   }
 
-  const loopRaridade = async (lista: any) => {
-    const raridadesExistentes = new Set<string>();
+  // const loop = async (lista: any) => {
+  //   const energiasExistentes = new Set<string>();
+  //   const treinadoresExistentes = new Set<string>();
 
-    const promessas = lista.map(async (carta: any) => {
-      const cartaCompleta = await getCardById(carta.id);
-      if (cartaCompleta.rarity && cartaCompleta.category == "Pokemon") {
-        raridadesExistentes.add(cartaCompleta.rarity);
-        setRaridadesExistentes(Array.from(raridadesExistentes));
-      }
-    });
+  //   const promessas = lista.map(async (carta: any) => {
+  //     const cartaCompleta = await getCardById(carta.id);
+  //     if (!CartasExcluidasSet.has(carta.nome)) {
+  //       if (cartaCompleta.category == "Treinador") {
+  //         energiasExistentes.add(cartaCompleta.name);
+  //         setEnergiaExistentes(Array.from(energiasExistentes));
+  //       }else if(cartaCompleta.category == "Energia"){
+  //         treinadoresExistentes.add(cartaCompleta.name);
+  //         setTreinadoresExistentes(Array.from(treinadoresExistentes));
+  //       }
+  //     }
+  //   });
 
-    await Promise.all(promessas);
-  };
+  //   await Promise.all(promessas);
+  // };
 
 
 
   return (
     <div className="grid grid-cols-5 2xl:grid-cols-7 gap-4">
+      <ListaCardProvider lista={listaCartas}>
+        <ModalSelectCards />
+      </ListaCardProvider>
         <div className="col-span-5 2xl:col-span-7 py-5 h-auto max-h-[120px]">
           <div className="flex justify-center items-center gap-4">
             <Image
