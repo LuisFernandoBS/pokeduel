@@ -104,3 +104,17 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2B7FFF", endC
     transform: translateX(-250px) scale(1, 1) rotate(-200deg);
   }
 }
+
+#modalSelectCard{
+  animation: fade 1s ease 0s 1 normal forwards;
+}
+
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

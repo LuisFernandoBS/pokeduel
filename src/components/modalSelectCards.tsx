@@ -4,12 +4,17 @@ import CarrosselCards from "./CarrosselCards";
 import { getCardById } from "../services/tcgdexService";
 import { useListaCard } from "../context/ListaCardsContext";
 
-export default function ModalSelectCards() {
+interface Props {
+  carregarCard:(card:any) => void;
+}
+
+export default function ModalSelectCards({carregarCard}:Props) {
 
     const lista = useListaCard();
 
     const [listaDisplay, setListaDisplay] = useState<any[]>([]);
     const [carregandoLista, setCarregandoLista] = useState<boolean>(false);
+    const [card, setCardSelecionado] = useState(null);
 
     const nomeSelecionado = (nome: string) => {
         buscarCards(nome);
@@ -17,6 +22,7 @@ export default function ModalSelectCards() {
 
     const buscarCards = async (filtroSelecionado:string) => {
         let listaGrid = [];
+        setCardSelecionado(null);
         setCarregandoLista(true);
         const cardsEncontrados = lista.filter((item) =>{
             return item.name == filtroSelecionado;
@@ -30,13 +36,14 @@ export default function ModalSelectCards() {
     }
 
     const cardSelecionado = (card:any) => {
-        console.log(card);
+        setCardSelecionado(card);
     }
 
     return (
         <div
         className="fixed inset-0 z-50 grid place-content-center bg-black/50 p-4"
         role="dialog"
+        id="modalSelectCard"
         aria-modal="true"
         aria-labelledby="modalTitle"
         >
@@ -48,8 +55,9 @@ export default function ModalSelectCards() {
 
                     <button
                         type="button"
-                        className="-me-4 -mt-4 rounded-full p-2 transition-colors focus:outline-none text-gray-500 hover:bg-gray-800 hover:text-gray-300"
+                        className="-me-4 -mt-4 cursor-pointer rounded-full p-2 transition-colors focus:outline-none text-gray-500 hover:bg-gray-800 hover:text-gray-300"
                         aria-label="Close"
+                        onClick={()=>{carregarCard(null)}}
                     >
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -81,14 +89,16 @@ export default function ModalSelectCards() {
                     <button
                         type="button"
                         className="rounded cursor-pointer px-4 py-2 text-sm font-bold transition-colors bg-gray-800 text-gray-200 hover:bg-gray-700"
+                        onClick={()=>{carregarCard(null)}}
                     >
                         Cancel
                     </button>
 
                     <button
                         type="button"
-                        className="rounded cursor-pointer bg-blue-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-blue-700"
-                        disabled
+                        className={`rounded ${card ? 'cursor-pointer bg-blue-600 hover:bg-blue-700' : 'bg-gray-500'} px-4 py-2 text-sm font-bold text-white transition-colors`}
+                        disabled={!card}
+                        onClick={()=>{carregarCard(card)}}
                     >
                         Confirmar
                     </button>

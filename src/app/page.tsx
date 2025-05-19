@@ -19,6 +19,7 @@ export default function Home() {
 
   const [CardIniciado1, setCardIniciado1] = useState(false);
   const [CardIniciado2, setCardIniciado2] = useState(false);
+  const [cardModal, setCardModal] = useState<number|null>(null);
   const [card1, setCard1] = useState(null);
   const [card2, setCard2] = useState(null);
   const [carregandoServico, setCarregandoServico] = useState(false);
@@ -36,7 +37,6 @@ export default function Home() {
 
   const iniciarCard = async (div:number) => {
     setCarregandoServico(true);
-    await carregarCard(div);
     if (div === 1) {
       setCardIniciado1(true);
       setCarregandoServico(false);
@@ -46,22 +46,34 @@ export default function Home() {
     setCarregandoServico(false);
   };
 
-  const carregarCard = async (div:number) => {
-    let categoriaPokemon = false;
-    let card = null;
-    while (categoriaPokemon === false) {
-      card = await sortearCarta();
-      if (card.category && card.category == "Pokemon") {
-        categoriaPokemon = true;
-        break;
-      }
-    }
-    console.log(card);
-    if (div === 1) {
+  // const carregarCard = async (div:number) => {
+  //   let categoriaPokemon = false;
+  //   let card = null;
+  //   while (categoriaPokemon === false) {
+  //     card = await sortearCarta();
+  //     if (card.category && card.category == "Pokemon") {
+  //       categoriaPokemon = true;
+  //       break;
+  //     }
+  //   }
+  //   if (div === 1) {
+  //     setCard1(card);
+  //     return;
+  //   } 
+  //   setCard2(card);
+  // };
+
+  const carregarCard = (card:any) => {
+    if (card === null) setCardModal(null);
+    if (cardModal === 1) {
+      setCardIniciado1(true);
       setCard1(card);
+      setCardModal(null);
       return;
     } 
+    setCardIniciado2(true);
     setCard2(card);
+    setCardModal(null);
   };
 
   const carregarListaDeCartas = async () => {
@@ -107,7 +119,9 @@ export default function Home() {
   return (
     <div className="grid grid-cols-5 2xl:grid-cols-7 gap-4">
       <ListaCardProvider lista={listaCartas}>
-        <ModalSelectCards />
+        {cardModal && 
+        <ModalSelectCards carregarCard={carregarCard} />
+        }
       </ListaCardProvider>
         <div className="col-span-5 2xl:col-span-7 py-5 h-auto max-h-[120px]">
           <div className="flex justify-center items-center gap-4">
@@ -129,7 +143,7 @@ export default function Home() {
                   <button
                     className={`${carregandoServico?'cursor-progress':'cursor-pointer'} inline-block rounded-sm bg-indigo-600 px-8 py-3 text-lg font-medium text-white transition hover:scale-110 hover:-rotate-2 focus:ring-3 focus:outline-hidden`}
                     style={{ fontFamily: 'PokeFont' }}
-                    onClick={() => iniciarCard(1)}
+                    onClick={() => setCardModal(1)}
                     disabled={carregandoServico}
                   >
                     {carregandoServico ? 'Carregando...' : 'Iniciar'}
@@ -160,7 +174,7 @@ export default function Home() {
                   <button
                     className={`${carregandoServico?'cursor-progress':'cursor-pointer'} inline-block rounded-sm bg-indigo-600 px-8 py-3 text-lg font-medium text-white transition hover:scale-110 hover:-rotate-2 focus:ring-3 focus:outline-hidden`}
                     style={{ fontFamily: 'PokeFont' }}
-                    onClick={() => iniciarCard(2)}
+                    onClick={() => setCardModal(2)}
                   >
                     {carregandoServico ? 'Carregando...' : 'Iniciar'}
                   </button>

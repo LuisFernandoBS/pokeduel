@@ -50,7 +50,7 @@ export default function CarrosselCards({ listaDisplay, cardSelecionado, carregan
                     {listaDisplay
                     .slice(slideIndex * 3, slideIndex * 3 + 3)
                     .map((card, index) => (
-                        <div key={index} className="py-10 px-3">
+                        <div key={index} className="pt-10 px-3">
                             <Image
                             src={`${card.image}/high.webp`}
                             alt="card"
