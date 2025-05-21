@@ -16,53 +16,25 @@ export default function Card({ card, numCard, abrirModal }: Props) {
   const cardRaridade = card?.rarity || "Raridade da carta";
   const cardAtaques = card?.attacks || [];
 
-  const [animacaoAtiva, setAnimacaoAtiva] = useState(false);
-
-  const alterarCard = () => {
-    setAnimacaoAtiva(true);
-    setTimeout(()=>{
-      setAnimacaoAtiva(false);
-      abrirModal(numCard);
-    },1000)
-  };
-
   return (
     <article
     className={`overflow-hidden border ${numCard == 1 ? "border-blue-500":"border-red-700"} rounded-2xl shadow-[0_0_30px] ${numCard == 1 ? "shadow-blue-500/80":"shadow-red-700/80"} transition`}
     >
-        <img
-            alt=""
-            src={`${cardImagem ??'https://assets.tcgdex.net/pt/swsh/swsh8/86'}/high.webp`}
-            className="h-96 w-70 object-cover"
-        />
+        {cardImagem ? (
+          <img
+              alt=""
+              src={`${cardImagem ??'https://assets.tcgdex.net/pt/swsh/swsh8/86'}/high.webp`}
+              className="h-96 w-70 object-cover"
+          />
+        ):(
+          <div className="h-96 w-70 bg-gray-300 animate-pulse"></div>
+        )}
 
         <div className="bg-gray-900 p-4 sm:p-6 ">
             <a href="#" className="flex">
               <h3 className="mt-0.5 text-lg text-white align-middle">
                 {cardNome}
               </h3>
-              {card && 
-              <button 
-              className="cursor-pointer ml-5 justify-center w-[35px] h-[35px] flex z-30"
-              onClick={()=>{alterarCard()}}
-              >
-                  <Image
-                  className={`absolute ${animacaoAtiva && 'alterar-card'}`}
-                  src="/assets/img/refresh.png"
-                  alt="refresh"
-                  width={35}
-                  height={35}
-                  >
-                  </Image>
-                  <Image
-                  className="absolute mt-[10px]"
-                  src="/assets/img/pokeball-small.png"
-                  alt="refresh"
-                  width={15}
-                  height={15}
-                  ></Image>
-              </button>
-              }
             </a>
             <div className="grid grid-cols-3 grid-rows-2 gap-2 mt-5">
                 <div className="col-span-1 flex justify-center items-center text-center">

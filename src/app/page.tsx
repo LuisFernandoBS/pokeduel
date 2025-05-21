@@ -26,6 +26,7 @@ export default function Home() {
   const [listaCartas, setListaCartas] = useState([]);
   const [energiaExistentes, setEnergiaExistentes] = useState<string[]>([]);
   const [treinadoresExistentes, setTreinadoresExistentes] = useState<string[]>([]);
+  const [animacaoAtiva, setAnimacaoAtiva] = useState<number|null>(null);
 
   useEffect(() => {
     carregarListaDeCartas();
@@ -35,44 +36,18 @@ export default function Home() {
   //   loop(listaCartas);
   // }, [listaCartas]);
 
-  const iniciarCard = async (div:number) => {
-    setCarregandoServico(true);
-    if (div === 1) {
-      setCardIniciado1(true);
-      setCarregandoServico(false);
-      return;
-    }
-    setCardIniciado2(true);
-    setCarregandoServico(false);
+
+  const trocarCard = (numCard:number) => {
+    setAnimacaoAtiva(numCard);
+    setTimeout(()=>{
+      setAnimacaoAtiva(null);
+      alterarCard(numCard);
+    },1000)
   };
 
   const alterarCard = async (div:number) => {
     setCardModal(div)
-    if (div === 1) {
-      setCard1(null);
-      setCardIniciado1(false);
-      return;
-    }
-    setCard2(null);
-    setCardIniciado2(false);
   };
-
-  // const carregarCard = async (div:number) => {
-  //   let categoriaPokemon = false;
-  //   let card = null;
-  //   while (categoriaPokemon === false) {
-  //     card = await sortearCarta();
-  //     if (card.category && card.category == "Pokemon") {
-  //       categoriaPokemon = true;
-  //       break;
-  //     }
-  //   }
-  //   if (div === 1) {
-  //     setCard1(card);
-  //     return;
-  //   } 
-  //   setCard2(card);
-  // };
 
   const carregarCard = (card:any) => {
     if (card === null){
@@ -151,6 +126,62 @@ export default function Home() {
         </div>
         <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-2 flex justify-end items-center">
           <div className="grid w-full grid-cols-11 grid-rows-1">
+            {CardIniciado1 && (
+              <div className="col-span-5 row-start-1 flex justify-end items-center px-2">
+                <div className="w-70 flex justify-center">
+                  <button 
+                  className="cursor-pointer justify-center w-[35px] h-[35px] flex"
+                  onClick={()=>{trocarCard(1)}}
+                  >
+                      <Image
+                      className={`absolute ${animacaoAtiva == 1 && 'alterar-card'}`}
+                      src="/assets/img/refresh.png"
+                      alt="refresh"
+                      width={35}
+                      height={35}
+                      >
+                      </Image>
+                      <Image
+                      className="absolute mt-[10px]"
+                      src="/assets/img/pokeball-small.png"
+                      alt="refresh"
+                      width={15}
+                      height={15}
+                      ></Image>
+                  </button>
+                </div>
+              </div>
+            )}
+            {CardIniciado2 && (
+              <div className="col-span-5 row-start-1 col-start-6 flex justify-end items-center px-2">
+                <div className="w-70 flex justify-center">
+                  <button 
+                  className="cursor-pointer justify-center w-[35px] h-[35px] flex"
+                  onClick={()=>{trocarCard(2)}}
+                  >
+                      <Image
+                      className={`absolute ${animacaoAtiva == 2 && 'alterar-card'}`}
+                      src="/assets/img/refresh.png"
+                      alt="refresh"
+                      width={35}
+                      height={35}
+                      >
+                      </Image>
+                      <Image
+                      className="absolute mt-[10px]"
+                      src="/assets/img/pokeball-small.png"
+                      alt="refresh"
+                      width={15}
+                      height={15}
+                      ></Image>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-3 flex justify-end items-center">
+          <div className="grid w-full grid-cols-11 grid-rows-1">
             <div className="col-span-5 row-start-1 flex justify-end items-center py-3 px-2">
               {!CardIniciado1 && (
                 <div className="absolute w-70 justify-center text-center z-20">
@@ -206,7 +237,7 @@ export default function Home() {
           </div>
         </div>
         {CardIniciado1 && CardIniciado2 && (
-          <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-3 bg-painel flex justify-center items-center rounded-xl px-1 py-1">
+          <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-4 bg-painel flex justify-center items-center rounded-xl px-1 py-1">
             <div className="w-full">
                 <PainelComparativo card1={card1} card2={card2} />
             </div>
