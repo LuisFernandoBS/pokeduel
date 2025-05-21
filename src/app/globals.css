@@ -46,7 +46,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2B7FFF", endC
 }
 
 @keyframes animacaoCompletaPokebola {
-  /* Entrada quicando (0% a 50%) */
   0% {
     opacity: 0;
     transform: translateY(-180px) scale(1, 1) rotate(0deg);
@@ -54,11 +53,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2B7FFF", endC
 
   15% {
     opacity: 1;
-    transform: translateY(0) scale(1.2, 0.8) rotate(0deg); /* achatado no impacto */
+    transform: translateY(0) scale(1.2, 0.8) rotate(0deg);
   }
 
   20% {
-    transform: translateY(0) scale(1, 1) rotate(0deg); /* volta ao normal */
+    transform: translateY(0) scale(1, 1) rotate(0deg);
   }
 
   25% {
@@ -93,7 +92,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2B7FFF", endC
     transform: translateY(0) scale(1.05, 0.95) rotate(0deg);
   }
 
-  /* Saída rotacionando (50% a 100%) */
   50.01% {
     opacity: 1;
     transform: translateX(0) scale(1, 1) rotate(0deg);
@@ -116,5 +114,19 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2B7FFF", endC
 
 	100% {
 		opacity: 1;
+	}
+}
+
+.alterar-card{
+  animation: rotacionar 1s ease 0s 1 normal forwards;
+}
+
+@keyframes rotacionar {
+	0% {
+		transform: rotate(360deg);
+	}
+
+	100% {
+		transform: rotate(0);
 	}
 }

@@ -50,13 +50,13 @@ export default function CarrosselCards({ listaDisplay, cardSelecionado, carregan
                     {listaDisplay
                     .slice(slideIndex * 3, slideIndex * 3 + 3)
                     .map((card, index) => (
-                        <div key={index} className="pt-10 px-3">
+                        <div key={index} className="pt-10 px-3 pb-5">
                             <Image
                             src={`${card.image}/high.webp`}
                             alt="card"
                             width={250}
                             height={400}
-                            className={`object-cover cursor-pointer rounded-2xl transition hover:scale-[105%] ${indexCardSelecionado === index && 'shadow-[-1px_2px_39px_-4px_rgba(56,95,230,0.95)]'}`}
+                            className={`object-cover cursor-pointer mb-5 rounded-2xl transition hover:scale-[105%] ${indexCardSelecionado === index && 'shadow-[-1px_2px_39px_-4px_rgba(56,95,230,0.95)]'}`}
                             onClick={()=>{
                                 cardSelecionado(card);
                                 setIndexCardSelecionado(index);

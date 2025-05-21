@@ -46,6 +46,17 @@ export default function Home() {
     setCarregandoServico(false);
   };
 
+  const alterarCard = async (div:number) => {
+    setCardModal(div)
+    if (div === 1) {
+      setCard1(null);
+      setCardIniciado1(false);
+      return;
+    }
+    setCard2(null);
+    setCardIniciado2(false);
+  };
+
   // const carregarCard = async (div:number) => {
   //   let categoriaPokemon = false;
   //   let card = null;
@@ -64,16 +75,19 @@ export default function Home() {
   // };
 
   const carregarCard = (card:any) => {
-    if (card === null) setCardModal(null);
+    if (card === null){
+      setCardModal(null);
+      return;
+    }
     if (cardModal === 1) {
       setCardIniciado1(true);
       setCard1(card);
       setCardModal(null);
-      return;
-    } 
-    setCardIniciado2(true);
-    setCard2(card);
-    setCardModal(null);
+    }else if (cardModal === 2){
+      setCardIniciado2(true);
+      setCard2(card);
+      setCardModal(null);
+    }
   };
 
   const carregarListaDeCartas = async () => {
@@ -156,10 +170,10 @@ export default function Home() {
                     CardIniciado1 ? 'opacity-0' : 'opacity-100'
                   }`}
                 ></div>
-                <Card card={card1} numCard={1} />
+                <Card card={card1} numCard={1} abrirModal={alterarCard}/>
               </div>
             </div>
-            <div className="col-span-1 row-start-1 flex justify-center items-center">
+            <div className="col-span-1 row-start-1 flex justify-center items-center px-1">
               <Image
                 src="/assets/img/versus.png"
                 alt="versus"
@@ -186,7 +200,7 @@ export default function Home() {
                     CardIniciado2 ? 'opacity-0' : 'opacity-100'
                   }`}
                 ></div>
-                <Card card={card2} numCard={2}/>
+                <Card card={card2} numCard={2} abrirModal={alterarCard}/>
               </div>
             </div>
           </div>
