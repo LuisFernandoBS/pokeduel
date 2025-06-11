@@ -63,7 +63,7 @@ return (
                     <div className="w-full">
                         <div className="my-2 p-1 bg-gray-800 flex border border-gray-800">
                             <div className="flex flex-auto flex-wrap"></div>
-                            <input id="filtroCards" placeholder="Pesquise o pokemon ..." className="p-1 px-2 appearance-none outline-none w-full text-gray-200"  
+                            <input id="filtroCards" placeholder="Digite 3 ou mais caracteres para iniciar a busca" className="p-1 px-2 appearance-none outline-none w-full text-gray-200"  
                                 onChange={(e) => {
                                     filtrarLista(e.target.value);
                                 }}

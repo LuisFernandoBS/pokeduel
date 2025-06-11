@@ -80,9 +80,22 @@ export default function ModalSelectCards({carregarCard}:Props) {
                     <div className="col-span-1">
                         <Autocomplete onSelecionar={nomeSelecionado} numero={2}/>
                     </div>
+                    { (listaDisplay.length > 0 || carregandoLista) && (
                     <div className="col-span-1">
                         <CarrosselCards listaDisplay={listaDisplay} cardSelecionado={cardSelecionado} carregandoLista={carregandoLista}/>
                     </div>
+                    )}
+                    { listaDisplay.length == 0 && !carregandoLista && (
+                        <div className="col-span-1">
+                            <div className="flex flex-col items-center justify-center h-full text-center">
+                                <div className="bg-gray-700 rounded-xl w-[250px] h-[345px] shadow-lg mb-4 flex items-center justify-center">
+                                    <span className="text-gray-500 text-7xl">?</span>
+                                </div>
+                                <p className="text-gray-400">Nenhum card ainda...<br />Digite o nome para começar a busca.</p>
+                            </div>
+                        </div>
+                    )}
+
                 </div>
 
                 <footer className="mt-9 flex justify-end gap-2">
