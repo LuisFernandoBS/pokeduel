@@ -191,7 +191,7 @@ export default function Home() {
                     onClick={() => setCardModal(1)}
                     disabled={carregandoServico}
                   >
-                    {carregandoServico ? 'Carregando...' : 'Iniciar'}
+                    {carregandoServico ? 'Carregando...' : 'Escolher'}
                   </button>
                 </div>
               )}
@@ -221,7 +221,7 @@ export default function Home() {
                     style={{ fontFamily: 'PokeFont' }}
                     onClick={() => setCardModal(2)}
                   >
-                    {carregandoServico ? 'Carregando...' : 'Iniciar'}
+                    {carregandoServico ? 'Carregando...' : 'Escolher'}
                   </button>
                 </div>
               )}
