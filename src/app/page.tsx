@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Image from "next/image";
+import Header from "../components/header";
 import Card from "../components/card";
 import ModalSelectCards from "../components/modalSelectCards";
 import PainelComparativo from "../components/painelComparativo";
@@ -113,18 +114,9 @@ export default function Home() {
         }
       </ListaCardProvider>
         <div className="col-span-5 2xl:col-span-7 py-5 h-auto max-h-[120px]">
-          <div className="flex justify-center items-center gap-4">
-            <Image
-              src="/assets/img/logo.png"
-              alt="pokeduel"
-              width={60}
-              height={60}
-              className="rounded object-cover"
-            />
-            <h3 className="font-medium text-[40px]" style={{ fontFamily: 'PokeFont' }}>Poke<span className="text-[#EC003F]">Duel</span></h3>
-          </div>
+          <Header page="duelo" />
         </div>
-        <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-2 flex justify-end items-center">
+        <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-2 flex justify-end items-center mt-7">
           <div className="grid w-full grid-cols-11 grid-rows-1">
             {CardIniciado1 && (
               <div className="col-span-5 row-start-1 flex justify-end items-center px-2">

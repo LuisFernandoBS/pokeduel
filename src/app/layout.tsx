@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { HistoricoDuelContext } from "../context/HistoricoDuelContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,17 +25,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  let historicoDuel:any = [];
-
   return (
     <html lang="pt-BR">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <HistoricoDuelContext lista={historicoDuel}>
-          {children}
-        </HistoricoDuelContext>
+        {children}
       </body>
     </html>
   );

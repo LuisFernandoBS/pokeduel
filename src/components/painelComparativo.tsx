@@ -1,7 +1,42 @@
+import { useEffect } from 'react';
 import { compararTipos } from '@/utils/tipoVantagem';
 import { compararRaridade } from '@/utils/comparaRaridade';
+import { useHistorico } from '@/hooks/useHistorico';
 
 export default function PainelComparativo({ card1, card2 }: { card1: any, card2: any }) {
+    const { adicionarHistorico } = useHistorico();
+    
+    useEffect(() => {
+        if (card1 && card2) {
+            const historicoCard = {
+                card1: {
+                    id: card1.id,
+                    nome: card1.name,
+                    img: card1.image,
+                    hp: cardHp1,
+                    tipo: cardTipo1,
+                    raridade: cardRaridade1,
+                    ataque: maiorAtaque1
+                },
+                card2: {
+                    id: card2.id,
+                    nome: card2.name,
+                    img: card2.image,
+                    hp: cardHp2,
+                    tipo: cardTipo2,
+                    raridade: cardRaridade2,
+                    ataque: maiorAtaque2
+                },
+                comparativo: {
+                    hp: resultadoHp(),
+                    tipo: resultadoTipo(),
+                    raridade: resultadoRaridade(),
+                    ataque: resultadoAtaque()
+                }
+            };
+            adicionarHistorico(historicoCard);
+        }
+    }, [card1, card2]);
 
     const cardNome1 = card1?.name || "Nome da carta";
     const cardTipo1 = card1?.types?.[0] || "Tipo da carta";
