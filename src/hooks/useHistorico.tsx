@@ -40,7 +40,7 @@ export function useHistorico() {
 
   useEffect(() => {
     const armazenado = localStorage.getItem('poke_duelo_historico');
-    if (armazenado) {
+    if (armazenado && JSON.parse(armazenado).length > 0) {
       setHistorico(JSON.parse(armazenado));
     }
   }, []);

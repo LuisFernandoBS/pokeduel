@@ -46,6 +46,17 @@ export default function Home() {
     },1000)
   };
 
+  const deletaCard = (numCard:number) => {
+    if (numCard === 1) {
+      setCardIniciado1(false);
+      setCard1(null);
+    } else if (numCard === 2) {
+      setCardIniciado2(false);
+      setCard2(null);
+    }
+    setCardModal(null);
+  };
+
   const alterarCard = async (div:number) => {
     setCardModal(div)
   };
@@ -141,6 +152,19 @@ export default function Home() {
                       height={15}
                       ></Image>
                   </button>
+                  <button 
+                  className="cursor-pointer justify-center w-[35px] h-[35px] ml-5 flex"
+                  onClick={()=>{deletaCard(1)}}
+                  >
+                      <Image
+                      className={`absolute`}
+                      src="/assets/img/delete.png"
+                      alt="refresh"
+                      width={35}
+                      height={35}
+                      >
+                      </Image>
+                  </button>
                 </div>
               </div>
             )}
@@ -167,6 +191,19 @@ export default function Home() {
                       height={15}
                       ></Image>
                   </button>
+                  <button 
+                  className="cursor-pointer justify-center w-[35px] h-[35px] ml-5 flex"
+                  onClick={()=>{deletaCard(2)}}
+                  >
+                      <Image
+                      className={`absolute`}
+                      src="/assets/img/delete.png"
+                      alt="refresh"
+                      width={35}
+                      height={35}
+                      >
+                      </Image>
+                  </button>
                 </div>
               </div>
             )}
@@ -189,8 +226,8 @@ export default function Home() {
               )}
               <div className="relative w-70">
                 <div
-                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-3500 ${
-                    CardIniciado1 ? 'opacity-0' : 'opacity-100'
+                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md  ${
+                    CardIniciado1 ? 'transition-opacity duration-3500 opacity-0' : 'opacity-100'
                   }`}
                 ></div>
                 <Card card={card1} numCard={1} abrirModal={alterarCard}/>
@@ -219,8 +256,8 @@ export default function Home() {
               )}
               <div className="relative w-70">
                 <div
-                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md transition-opacity duration-3500 ${
-                    CardIniciado2 ? 'opacity-0' : 'opacity-100'
+                  className={`absolute inset-0 z-10 bg-gray-800 rounded-md  ${
+                    CardIniciado2 ? 'transition-opacity duration-3500 opacity-0' : 'opacity-100'
                   }`}
                 ></div>
                 <Card card={card2} numCard={2} abrirModal={alterarCard}/>
