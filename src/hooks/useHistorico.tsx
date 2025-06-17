@@ -23,6 +23,7 @@ export interface ComparativoCard {
   tipo: resultadoComparativo;
   raridade: resultadoComparativo;
   ataque: resultadoComparativo;
+  cardVencedor: number;
 }
 
 export interface HistoricoCard {

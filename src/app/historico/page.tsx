@@ -15,7 +15,7 @@ export default function Historico() {
     useEffect(() => {
         if(historico.length !== 0) {
             setListaHistorico(historico);
-        }
+        }        
     }, [historico]);
 
     useEffect(() => {
@@ -90,7 +90,10 @@ export default function Historico() {
                         </div>
 
                         {listaHistorico.map((duelo, index) => (
-                            <div key={index} style={{ transitionDelay: `${index * 100}ms` }} className={`col-span-1 flex justify-center items-center p-3 bg-gray-800 rounded-lg shadow-md my-1 transition-opacity duration-500 ${aparecendo ? `opacity-100` : 'opacity-0'}`}>
+                            <div key={index} 
+                            style={{ transitionDelay: `${index * 100}ms` }} 
+                            className={`col-span-1 flex justify-center items-center p-3 bg-gray-800 rounded-lg shadow-md my-1 hover:bg-gray-700 transition-opacity duration-500 ${aparecendo ? `opacity-100` : 'opacity-0'}`}
+                            >
                                 <div className='grid w-full grid-cols-6 grid-rows-1 gap-1'>
                                     <div className="col-span-2 flex justify-center items-center p-4 bg-gray-900 border border-red-500 rounded-lg ">
                                         <h2 className='text-[15px] font-medium text-white flex items-center'>
@@ -102,12 +105,12 @@ export default function Historico() {
                                                 className="object-cover mr-3 cursor-pointer"
                                                 onClick={() => abrirModalImagemCard(duelo.card1.img)}
                                             />
-                                            <span className="mr-2">
-                                                {duelo.card1.nome} 
+                                            <span className={`mr-2 ${duelo.comparativo.cardVencedor == 1 ? 'text-yellow-500 font-bold' : 'text-white'}`}>
+                                                {`${duelo.comparativo.cardVencedor == 1?'👑':''}`} {duelo.card1.nome}
                                             </span>
                                             X 
-                                            <span className="ml-2">
-                                                {duelo.card2.nome}
+                                            <span className={`ml-2 ${duelo.comparativo.cardVencedor == 2 ? 'text-yellow-500 font-bold' : 'text-white'}`}>
+                                                {`${duelo.comparativo.cardVencedor == 2?'👑':''}`} {duelo.card2.nome}
                                             </span>
                                             <Image
                                                 src={`${duelo.card2.img}/high.webp`}
