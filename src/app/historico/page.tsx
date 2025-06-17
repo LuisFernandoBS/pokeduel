@@ -33,8 +33,8 @@ export default function Historico() {
                 <p className="text-gray-500">Nenhum duelo registrado ainda.</p>
             }
             { listaHistorico.length > 0 && 
-                <div className="grid grid-cols-5 2xl:grid-cols-8 gap-4 w-full px-5 2xl:px-0 pb-3">
-                    <div className="col-span-5 col-start-1 2xl:col-span-4 2xl:col-start-3  row-start-2 flex justify-end items-center">
+                <div className="grid grid-cols-5 2xl:grid-cols-14 gap-4 w-full px-5 2xl:px-0 pb-3">
+                    <div className="col-span-5 col-start-1 2xl:col-span-8 2xl:col-start-4  row-start-2 flex justify-end items-center">
                         <div className='grid w-full grid-cols-1 grid-rows-1'>
                             {listaHistorico.map((duelo, index) => (
                                 <div key={index} className="col-span-1 flex justify-center items-center p-3 bg-gray-800 rounded-lg shadow-md my-1">
@@ -67,19 +67,19 @@ export default function Historico() {
                                             </h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
-                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>HP</h2>
+                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>❤️ HP</h2>
                                             <h2 className='text-[15px] font-medium text-white'>{duelo.card1.hp} X {duelo.card2.hp}</h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
-                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>Ataque</h2>
+                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>⚔️ Ataque</h2>
                                             <h2 className='text-[15px] font-medium text-white'>{duelo.card1.ataque} X {duelo.card2.ataque}</h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
                                             <h2 className='text-[15px] font-medium text-white text-center w-full'>Tipo</h2>
-                                            <h2 className='text-[12px] font-medium text-white'>{duelo.card1.tipo} X {duelo.card2.tipo}</h2>
+                                            <h2 className='text-[12px] font-medium text-white'>{duelo.card1.iconeTipo}{duelo.card1.tipo} X {duelo.card2.iconeTipo}{duelo.card2.tipo}</h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
-                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>Raridade</h2>
+                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>💎 Raridade</h2>
                                             <h2 className='text-[12px] font-medium text-white'>{duelo.card1.raridade} X {duelo.card2.raridade}</h2>
                                         </div>
                                     </div>

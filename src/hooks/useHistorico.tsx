@@ -7,6 +7,7 @@ export interface InfoCard {
   nome: string;
   hp: string;
   tipo: string;
+  iconeTipo: string;
   img: string;
   raridade: string;
   ataque: number;
@@ -28,11 +29,6 @@ export interface HistoricoCard {
   card1: InfoCard;
   card2: InfoCard;
   comparativo: ComparativoCard;
-}
-
-interface HistoricoContextType {
-  historico: HistoricoCard[];
-  adicionarHistorico: (novo: HistoricoCard) => void;
 }
 
 export function useHistorico() {

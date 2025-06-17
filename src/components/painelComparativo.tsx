@@ -15,6 +15,7 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
                     img: card1.image,
                     hp: cardHp1,
                     tipo: cardTipo1,
+                    iconeTipo: tipoIconesEmoji[cardTipo1],
                     raridade: cardRaridade1,
                     ataque: maiorAtaque1
                 },
@@ -24,6 +25,7 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
                     img: card2.image,
                     hp: cardHp2,
                     tipo: cardTipo2,
+                    iconeTipo: tipoIconesEmoji[cardTipo2],
                     raridade: cardRaridade2,
                     ataque: maiorAtaque2
                 },
@@ -49,6 +51,27 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
     const cardHp2 = card2?.hp || "HP da carta";
     const cardRaridade2 = card2?.rarity || "Raridade da carta";
     const cardAtaques2: Ataque[] = card2?.attacks || [];
+
+    const tipoIconesEmoji: Record<string, string> = {
+    Planta: '🌿',
+    Fogo: '🔥',
+    Água: '💧',
+    Elétrico: '⚡',
+    Psíquico: '🔮',
+    Lutador: '🥊',
+    Noturno: '🌙',
+    Metal: '🛡️',
+    Dragão: '🐉',
+    Fada: '✨',
+    Normal: '🎯',
+    Venenoso: '☠️',
+    Inseto: '🐛',
+    Rocha: '⛰️',
+    Fantasma: '👻',
+    Gelo: '❄️',
+    Terrestre: '🏜️',
+    Aéreo: '💨',
+    };
 
     let maiorAtaque1 = 0;
     let maiorAtaque2 = 0;
@@ -111,30 +134,30 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
         <div className="grid grid-cols-4 gap-4 bg-gray-900 rounded-xl py-4 px-4">
             <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorHp} rounded-xl h-full py-2`}>
                 <div className="flex flex-col items-center">
-                    <h1 className="text-1xl font-bold text-white">HP</h1>
+                    <h1 className="text-1xl font-bold text-white">❤️ HP</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{cardHp1} <span className='font-bold'>X</span> {cardHp2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorHp}`}>{nomeVencedorHp}</h1>
+                </div>
+            </div>
+            <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorAtaque} rounded-xl h-full py-2`}>
+                <div className="flex flex-col items-center">
+                    <h1 className="text-1xl font-bold text-white">⚔️ Ataque</h1>
+                    <h1 className="text-[16px] font-medium text-white text-center">{maiorAtaque1} <span className='font-bold'>X</span> {maiorAtaque2}</h1>
+                    <h1 className={`text-1xl font-bold text-center ${corVencedorAtaque}`}>{nomeVencedorAtaque}</h1>
                 </div>
             </div>
             <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorTipo} rounded-xl h-full py-2`}>
                 <div className="flex flex-col items-center">
                     <h1 className="text-1xl font-bold text-white">Tipo</h1>
-                    <h1 className="text-[16px] font-medium text-white text-center">{cardTipo1} <span className='font-bold'>X</span> {cardTipo2}</h1>
+                    <h1 className="text-[16px] font-medium text-white text-center">{tipoIconesEmoji[cardTipo1]}{cardTipo1} <span className='font-bold'>X</span> {tipoIconesEmoji[cardTipo2]}{cardTipo2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorTipo}`}>{nomeVencedorTipo}</h1>
                 </div>
             </div>
             <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorRaridade} rounded-xl h-full py-2`}>
                 <div className="flex flex-col items-center">
-                    <h1 className="text-1xl font-bold text-white">Raridade</h1>
+                    <h1 className="text-1xl font-bold text-white">💎 Raridade</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{cardRaridade1} <span className='font-bold'>X</span> {cardRaridade2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorRaridade}`}>{nomeVencedorRaridade}</h1>
-                </div>
-            </div>
-            <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorAtaque} rounded-xl h-full py-2`}>
-                <div className="flex flex-col items-center">
-                    <h1 className="text-1xl font-bold text-white">Ataque</h1>
-                    <h1 className="text-[16px] font-medium text-white text-center">{maiorAtaque1} <span className='font-bold'>X</span> {maiorAtaque2}</h1>
-                    <h1 className={`text-1xl font-bold text-center ${corVencedorAtaque}`}>{nomeVencedorAtaque}</h1>
                 </div>
             </div>
         </div>
