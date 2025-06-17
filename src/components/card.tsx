@@ -1,10 +1,10 @@
 interface Props {
   card:any,
   numCard:number,
-  abrirModal:(card:any) => void;
+  cardVencedor:number|null
 }
 
-export default function Card({ card, numCard, abrirModal }: Props) {
+export default function Card({ card, numCard, cardVencedor }: Props) {
 
   const cardImagem = card?.image;
   const cardNome = card?.name || "Nome da carta";
@@ -29,8 +29,11 @@ export default function Card({ card, numCard, abrirModal }: Props) {
 
         <div className="bg-gray-900 p-4 sm:p-6 ">
             <a href="#" className="flex">
-              <h3 className="mt-0.5 text-lg text-white align-middle">
-                {cardNome}
+              <h3 
+              className={`mt-0.5 text-lg align-middle ${cardVencedor == numCard?'text-yellow-500':'text-white'}`}
+              style={cardVencedor == numCard ? { textShadow: '0 0 3px #eab308' } : {}}
+              >
+                {cardNome} {cardVencedor == numCard? "- 👑	Vencedor 👑	" : ""}
               </h3>
             </a>
             <div className="grid grid-cols-3 grid-rows-2 gap-2 mt-5">

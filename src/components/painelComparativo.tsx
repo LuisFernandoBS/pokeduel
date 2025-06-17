@@ -1,44 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { compararTipos } from '@/utils/tipoVantagem';
 import { compararRaridade } from '@/utils/comparaRaridade';
 import { useHistorico } from '@/hooks/useHistorico';
 
-export default function PainelComparativo({ card1, card2 }: { card1: any, card2: any }) {
+interface Props {
+    card1: any;
+    card2: any;
+    salvarCardVencedor: (vencedor: number) => void;
+}
+
+interface Ataque {
+    name: string;
+    damage: string;
+    cost: string[];
+}
+
+export default function PainelComparativo({ card1, card2, salvarCardVencedor }: Props) {
     const { adicionarHistorico } = useHistorico();
-    
-    useEffect(() => {
-        if (card1 && card2) {
-            const historicoCard = {
-                card1: {
-                    id: card1.id,
-                    nome: card1.name,
-                    img: card1.image,
-                    hp: cardHp1,
-                    tipo: cardTipo1,
-                    iconeTipo: tipoIconesEmoji[cardTipo1],
-                    raridade: cardRaridade1,
-                    ataque: maiorAtaque1
-                },
-                card2: {
-                    id: card2.id,
-                    nome: card2.name,
-                    img: card2.image,
-                    hp: cardHp2,
-                    tipo: cardTipo2,
-                    iconeTipo: tipoIconesEmoji[cardTipo2],
-                    raridade: cardRaridade2,
-                    ataque: maiorAtaque2
-                },
-                comparativo: {
-                    hp: resultadoHp(),
-                    tipo: resultadoTipo(),
-                    raridade: resultadoRaridade(),
-                    ataque: resultadoAtaque()
-                }
-            };
-            adicionarHistorico(historicoCard);
-        }
-    }, [card1, card2]);
 
     const cardNome1 = card1?.name || "Nome da carta";
     const cardTipo1 = card1?.types?.[0] || "Tipo da carta";
@@ -77,12 +55,6 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
 
     let maiorAtaque1 = 0;
     let maiorAtaque2 = 0;
-
-    interface Ataque {
-        name: string;
-        damage: string;
-        cost: string[];
-    }
 
     const resultadoHp = () => {
         if (cardHp1 > cardHp2) return { nome: cardNome1, cor: "text-blue-500" };
@@ -126,10 +98,69 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
         return { nome: "Empate!", cor: "text-yellow-400" };
     }
 
+    const retornaCardVencedor = () => {
+        let pontosCard1 = 0;
+        let pontosCard2 = 0;
+
+        if (nomeVencedorHp === cardNome1) pontosCard1++;
+        else if (nomeVencedorHp === cardNome2) pontosCard2++;
+
+        if (nomeVencedorTipo === cardNome1) pontosCard1++;
+        else if (nomeVencedorTipo === cardNome2) pontosCard2++;
+
+        if (nomeVencedorRaridade === cardNome1) pontosCard1++;
+        else if (nomeVencedorRaridade === cardNome2) pontosCard2++;
+
+        if (nomeVencedorAtaque === cardNome1) pontosCard1++;
+        else if (nomeVencedorAtaque === cardNome2) pontosCard2++;
+
+        const cardVencedor = pontosCard1 > pontosCard2 ? 1 : pontosCard1 < pontosCard2 ? 2 : 0;
+        salvarCardVencedor(cardVencedor);
+
+        return cardVencedor;
+    };
+
     const { nome: nomeVencedorHp, cor: corVencedorHp } = resultadoHp();
     const { nome: nomeVencedorTipo, cor: corVencedorTipo } = resultadoTipo();
     const { nome: nomeVencedorRaridade, cor: corVencedorRaridade } = resultadoRaridade();
     const { nome: nomeVencedorAtaque, cor: corVencedorAtaque } = resultadoAtaque();
+
+        useEffect(() => {
+        if (card1 && card2 && nomeVencedorHp && nomeVencedorTipo && nomeVencedorRaridade && nomeVencedorAtaque) {
+            const vencedor = retornaCardVencedor();
+            
+            const historicoCard = {
+                card1: {
+                    id: card1.id,
+                    nome: card1.name,
+                    img: card1.image,
+                    hp: cardHp1,
+                    tipo: cardTipo1,
+                    iconeTipo: tipoIconesEmoji[cardTipo1],
+                    raridade: cardRaridade1,
+                    ataque: maiorAtaque1
+                },
+                card2: {
+                    id: card2.id,
+                    nome: card2.name,
+                    img: card2.image,
+                    hp: cardHp2,
+                    tipo: cardTipo2,
+                    iconeTipo: tipoIconesEmoji[cardTipo2],
+                    raridade: cardRaridade2,
+                    ataque: maiorAtaque2
+                },
+                comparativo: {
+                    hp: resultadoHp(),
+                    tipo: resultadoTipo(),
+                    raridade: resultadoRaridade(),
+                    ataque: resultadoAtaque(),
+                    cardVencedor: vencedor,
+                }
+            };
+            adicionarHistorico(historicoCard);
+        }
+    }, [card1, card2, nomeVencedorHp, nomeVencedorTipo, nomeVencedorRaridade, nomeVencedorAtaque]);
 
 
     return (

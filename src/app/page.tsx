@@ -28,6 +28,7 @@ export default function Home() {
   const [energiaExistentes, setEnergiaExistentes] = useState<string[]>([]);
   const [treinadoresExistentes, setTreinadoresExistentes] = useState<string[]>([]);
   const [animacaoAtiva, setAnimacaoAtiva] = useState<number|null>(null);
+  const [cardVencedor, setCardVencedor] = useState<number|null>(null);
 
   useEffect(() => {
     carregarListaDeCartas();
@@ -230,7 +231,7 @@ export default function Home() {
                     CardIniciado1 ? 'transition-opacity duration-3500 opacity-0' : 'opacity-100'
                   }`}
                 ></div>
-                <Card card={card1} numCard={1} abrirModal={alterarCard}/>
+                <Card card={card1} numCard={1} cardVencedor={cardVencedor}/>
               </div>
             </div>
             <div className="col-span-1 row-start-1 flex justify-center items-center px-1">
@@ -260,7 +261,7 @@ export default function Home() {
                     CardIniciado2 ? 'transition-opacity duration-3500 opacity-0' : 'opacity-100'
                   }`}
                 ></div>
-                <Card card={card2} numCard={2} abrirModal={alterarCard}/>
+                <Card card={card2} numCard={2} cardVencedor={cardVencedor}/>
               </div>
             </div>
           </div>
@@ -268,7 +269,7 @@ export default function Home() {
         {CardIniciado1 && CardIniciado2 && (
           <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-4 bg-painel flex justify-center items-center rounded-xl px-1 py-1">
             <div className="w-full">
-                <PainelComparativo card1={card1} card2={card2} />
+                <PainelComparativo card1={card1} card2={card2} salvarCardVencedor={setCardVencedor} />
             </div>
           </div>
         )}
