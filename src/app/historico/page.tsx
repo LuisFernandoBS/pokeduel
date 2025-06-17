@@ -67,20 +67,20 @@ export default function Historico() {
                                             </h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
-                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>❤️ HP</h2>
-                                            <h2 className='text-[15px] font-medium text-white'>{duelo.card1.hp} X {duelo.card2.hp}</h2>
+                                            <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>❤️ HP</h2>
+                                            <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white'>{duelo.card1.hp} X {duelo.card2.hp}</h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
-                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>⚔️ Ataque</h2>
-                                            <h2 className='text-[15px] font-medium text-white'>{duelo.card1.ataque} X {duelo.card2.ataque}</h2>
+                                            <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>⚔️ Ataque</h2>
+                                            <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white'>{duelo.card1.ataque} X {duelo.card2.ataque}</h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
-                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>Tipo</h2>
-                                            <h2 className='text-[12px] font-medium text-white'>{duelo.card1.iconeTipo}{duelo.card1.tipo} X {duelo.card2.iconeTipo}{duelo.card2.tipo}</h2>
+                                            <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>Tipo</h2>
+                                            <h2 className='text-[12px] 2xl:text-[14px] font-medium text-white'>{duelo.card1.iconeTipo}{duelo.card1.tipo} X {duelo.card2.iconeTipo}{duelo.card2.tipo}</h2>
                                         </div>
                                         <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
-                                            <h2 className='text-[15px] font-medium text-white text-center w-full'>💎 Raridade</h2>
-                                            <h2 className='text-[12px] font-medium text-white'>{duelo.card1.raridade} X {duelo.card2.raridade}</h2>
+                                            <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>💎 Raridade</h2>
+                                            <h2 className='text-[12px] 2xl:text-[14px] font-medium text-white'>{duelo.card1.raridade} X {duelo.card2.raridade}</h2>
                                         </div>
                                     </div>
                                 </div>
