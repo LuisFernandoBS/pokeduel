@@ -69,6 +69,8 @@ export default function PainelComparativo({ card1, card2 }: { card1: any, card2:
     Rocha: '⛰️',
     Fantasma: '👻',
     Gelo: '❄️',
+    Sombrio: '🕷️',
+    Incolor: '🌫️',
     Terrestre: '🏜️',
     Aéreo: '💨',
     };
