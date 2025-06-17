@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 
 interface Props {
@@ -6,6 +7,9 @@ interface Props {
 }
 
 export default function ModalImagemCard({urlImagem,fecharImagem}:Props) {
+    const [imgCarregada, setImgCarregada] = useState(false);
+
+
     return(
         <div
         className="fixed inset-0 z-50 grid place-content-center bg-black/90 p-4"
@@ -38,13 +42,19 @@ export default function ModalImagemCard({urlImagem,fecharImagem}:Props) {
                         </svg>
                     </button>
                 </div>
+                {!imgCarregada && (
+                    <div className="inset-0 bg-gray-600 animate-pulse rounded-2xl w-[420px] h-[600px]" />
+                )}
                 <Image
                 src={`${urlImagem}/high.webp`}
                 alt="card"
                 width={420}
                 height={600}
                 loading="eager"
-                className={`object-cover rounded-2xl transition hover:scale-[105%]`}
+                className={`object-cover rounded-2xl transition hover:scale-[105%] ${imgCarregada ? '' : 'hidden'}`}
+                onLoad={() => {
+                    setImgCarregada(true);
+                }}
                 />
             </div>
         </div>
