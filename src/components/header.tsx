@@ -39,6 +39,14 @@ return (
                 >
                     Histórico
                 </button>
+                <button
+                    type="button"
+                    className={`${page !== 'dashboard' && 'bg-gray-800 cursor-pointer hover:bg-gray-900'} $ px-3 py-1.5 text-sm font-medium transition-colors focus:relative text-gray-200 hover:text-white`}
+                    disabled={page === 'dashboard'}
+                    onClick={() => router.push('/dashboard')}
+                >
+                    Dashboard
+                </button>
             </span>
         </div>
     </div>
