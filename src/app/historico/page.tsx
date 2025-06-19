@@ -57,7 +57,7 @@ export default function Historico() {
             <div className="py-5 h-auto max-h-[120px]">
                 <Header page="historico" />
             </div>
-            <h1 className="text-2xl font-bold mb-4 mt-15">Histórico de Duelo</h1>
+            <h1 className="text-2xl mb-4 mt-15 font-pokeduel">Histórico de Duelo</h1>
             
             <div className="grid grid-cols-5 2xl:grid-cols-14 gap-4 w-full px-5 2xl:px-0 pb-3">
                 <div className="col-span-5 col-start-1 2xl:col-span-8 2xl:col-start-4  row-start-2 flex justify-end items-center">
@@ -66,7 +66,7 @@ export default function Historico() {
                         <div className="col-span-1 flex justify-center items-center p-0 shadow-md mb-5">
                             <div className="w-full p-3 bg-gray-900 flex border-2 border-gray-800 rounded-lg">
                                 <div className="flex flex-auto flex-wrap"></div>
-                                <input id="filtroDuelos" placeholder="Digite nome do card para iniciar a busca" className="p-2 px-2 appearance-none outline-none w-full text-[19px] text-gray-200"  
+                                <input id="filtroDuelos" placeholder="Digite nome da carta para iniciar a busca" className="p-2 px-2 appearance-none outline-none w-full text-[19px] text-gray-200"  
                                     onChange={(e) => {
                                         filtrarDuelos(e.target.value);
                                     }}
