@@ -72,7 +72,7 @@ export default function CarrosselCards({ listaDisplay, cardSelecionado, carregan
                             width={250}
                             height={400}
                             loading="eager"
-                            className={`object-cover cursor-pointer mb-5 rounded-2xl transition hover:scale-[105%] ${indexCardSelecionado === realIndex && 'shadow-[-1px_2px_39px_-4px_rgba(56,95,230,0.95)]'} ${loadingCards.length == listaDisplay.length ? '' : 'hidden'}`}
+                            className={`object-cover h-[280px] w-[250px] md:w-[190px] cursor-pointer mb-5 rounded-2xl md:rounded-xl transition hover:scale-[105%] ${indexCardSelecionado === realIndex && 'shadow-[-1px_2px_39px_-4px_rgba(56,95,230,0.95)]'} ${loadingCards.length == listaDisplay.length ? '' : 'hidden'}`}
                             onLoad={() => {
                                 marcarCardComoCarregado(realIndex);
                             }}

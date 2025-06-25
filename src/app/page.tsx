@@ -119,16 +119,16 @@ export default function Home() {
 
 
   return (
-    <div className="grid grid-cols-5 2xl:grid-cols-7 gap-4">
+    <div className="grid md:grid-cols-12 2xl:grid-cols-7 gap-4">
       <ListaCardProvider lista={listaCartas}>
         {cardModal && 
         <ModalSelectCards carregarCard={carregarCard} />
         }
       </ListaCardProvider>
-        <div className="col-span-5 2xl:col-span-7 py-5 h-auto max-h-[120px]">
+        <div className="md:col-start-2 md:col-span-10 2xl:col-span-7 py-5 h-auto max-h-[120px]">
           <Header page="duelo" />
         </div>
-        <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-2 flex justify-end items-center mt-7">
+        <div className="md:col-start-2 md:col-span-10 2xl:col-start-3 row-start-2 flex justify-end items-center mt-7">
           <div className="grid w-full grid-cols-11 grid-rows-1">
             {CardIniciado1 && (
               <div className="col-span-5 row-start-1 flex justify-end items-center px-2">
@@ -170,8 +170,8 @@ export default function Home() {
               </div>
             )}
             {CardIniciado2 && (
-              <div className="col-span-5 row-start-1 col-start-6 flex justify-end items-center px-2">
-                <div className="w-70 flex justify-center">
+              <div className="col-span-5 row-start-1 col-start-7 flex 2xl:justify-end md:justify-center items-center px-2">
+                <div className="md:w-100 2xl:w-70 flex justify-center">
                   <button 
                   className="cursor-pointer justify-center w-[35px] h-[35px] flex"
                   onClick={()=>{trocarCard(2)}}
@@ -210,7 +210,7 @@ export default function Home() {
             )}
           </div>
         </div>
-        <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-3 flex justify-end items-center">
+        <div className="md:col-start-2 md:col-span-10 2xl:col-start-3 row-start-3 flex justify-end items-center">
           <div className="grid w-full grid-cols-11 grid-rows-1">
             <div className="col-span-5 row-start-1 flex justify-end items-center py-3 px-2">
               {!CardIniciado1 && (
@@ -267,7 +267,7 @@ export default function Home() {
           </div>
         </div>
         {CardIniciado1 && CardIniciado2 && (
-          <div className="col-span-3 col-start-2 2xl:col-start-3 row-start-4 bg-painel flex justify-center items-center rounded-xl px-1 py-1">
+          <div className="md:col-start-2 md:col-span-10 2xl:col-start-3 row-start-4 bg-painel flex justify-center items-center rounded-xl px-1 py-1">
             <div className="w-full">
                 <PainelComparativo card1={card1} card2={card2} salvarCardVencedor={setCardVencedor} />
             </div>
