@@ -212,7 +212,7 @@ export default function Home() {
         </div>
         <div className="md:col-start-2 md:col-span-10 2xl:col-span-5 2xl:col-start-2 row-start-3 flex justify-end items-center">
           <div className="grid w-full grid-cols-11 grid-rows-1">
-            <div className="col-span-5 row-start-1 flex justify-end items-start py-3 px-2">
+            <div className={`col-span-5 row-start-1 flex justify-end py-3 px-2 ${CardIniciado1?'items-start':'items-center'}`} >
               {!CardIniciado1 && (
                 <div className="absolute w-70 justify-center text-center z-20">
                   <button
@@ -243,7 +243,7 @@ export default function Home() {
                 className="rounded object-cover"
               />
             </div>
-            <div className="col-span-5 row-start-1 flex justify-start items-start py-3 px-2">
+            <div className={`col-span-5 row-start-1 flex justify-start py-3 px-2 ${CardIniciado2?'items-start':'items-center'}`}>
               {!CardIniciado2 && (
                 <div className="absolute w-70 justify-center text-center z-20">
                   <button
