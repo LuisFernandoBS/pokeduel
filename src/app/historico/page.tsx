@@ -94,8 +94,8 @@ export default function Historico() {
                             style={{ transitionDelay: `${index * 100}ms` }} 
                             className={`col-span-1 flex justify-center items-center p-3 bg-gray-800 rounded-lg shadow-md my-1 hover:bg-gray-700 transition-opacity duration-500 ${aparecendo ? `opacity-100` : 'opacity-0'}`}
                             >
-                                <div className='grid w-full grid-cols-6 grid-rows-1 gap-1'>
-                                    <div className="col-span-2 flex justify-center items-center p-4 bg-gray-900 border border-red-500 rounded-lg ">
+                                <div className='grid w-full md:grid-cols-14 2xl:grid-cols-6 grid-rows-1 gap-1'>
+                                    <div className="md:col-span-6 2xl:col-span-2 flex justify-center items-center p-4 bg-gray-900 border border-red-500 rounded-lg ">
                                         <h2 className='text-[15px] font-medium text-white flex items-center'>
                                             <Image
                                                 src={`${duelo.card1.img}/high.webp`}
@@ -122,19 +122,19 @@ export default function Historico() {
                                             />
                                         </h2>
                                     </div>
-                                    <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
+                                    <div className="md:col-span-2 2xl:col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
                                         <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>❤️ HP</h2>
                                         <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white'>{duelo.card1.hp} X {duelo.card2.hp}</h2>
                                     </div>
-                                    <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
+                                    <div className="md:col-span-2 2xl:col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
                                         <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>⚔️ Ataque</h2>
                                         <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white'>{duelo.card1.ataque} X {duelo.card2.ataque}</h2>
                                     </div>
-                                    <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
+                                    <div className="md:col-span-2 2xl:col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
                                         <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>Tipo</h2>
                                         <h2 className='text-[12px] 2xl:text-[14px] font-medium text-white'>{duelo.card1.iconeTipo}{duelo.card1.tipo} X {duelo.card2.iconeTipo}{duelo.card2.tipo}</h2>
                                     </div>
-                                    <div className="col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
+                                    <div className="md:col-span-2 2xl:col-span-1 flex flex-col h-full justify-center p-4 bg-gray-900 border border-amber-500 rounded-lg ">
                                         <h2 className='text-[15px] 2xl:text-[17px] font-medium text-white text-center w-full'>💎 Raridade</h2>
                                         <h2 className='text-[12px] 2xl:text-[14px] font-medium text-white'>{duelo.card1.raridade} X {duelo.card2.raridade}</h2>
                                     </div>
