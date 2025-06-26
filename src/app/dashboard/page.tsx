@@ -219,9 +219,9 @@ export default function Dashboard() {
                 <Header page="dashboard" />
             </div>
             <h1 className="text-2xl text-gray-300 mb-4 mt-15 font-pokeduel">Dashboard de Duelos</h1>
-            <div className="grid grid-cols-5 2xl:grid-cols-14 gap-4 w-full px-5 2xl:px-0 pb-3">
-                <div className="col-span-5 col-start-1 2xl:col-span-8 2xl:col-start-4  row-start-2 flex justify-end items-center">
-                    <div className='grid w-full grid-cols-4 grid-rows-1 gap-7'>
+            <div className="grid grid-cols-5 2xl:grid-cols-14 sm:gap-2 md:gap-4 w-full sm:px-2 md:px-5 2xl:px-0 pb-3">
+                <div className="col-span-5 col-start-1 2xl:col-span-8 2xl:col-start-4 row-start-2 flex justify-end items-center">
+                    <div className='grid w-full grid-cols-2 md:grid-cols-4 grid-rows-1 gap-2 md:gap-7 px-3 md:px-0'>
                         <div 
                         className="col-span-1 flex flex-col items-center justify-center text-center min-h-[120px] rounded-2xl text-gray-300 bg-gray-800 py-5"
                         style={{boxShadow: 'rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset'}}

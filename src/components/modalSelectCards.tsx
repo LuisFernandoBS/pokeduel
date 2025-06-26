@@ -47,7 +47,7 @@ export default function ModalSelectCards({carregarCard}:Props) {
         aria-modal="true"
         aria-labelledby="modalTitle"
         >
-            <div className="w-full max-w-md min-w-[1100px] md:min-w-[850px] h-[650px] rounded-lg p-6 shadow-lg bg-gray-900">
+            <div className="w-full max-w-md min-w-[380px] md:min-w-[850px] 2xl:min-w-[1100px] h-[650px] rounded-lg p-6 shadow-lg bg-gray-900">
                 <div className="flex items-start justify-between">
                     <h2 id="modalTitle" className="text-xl font-bold sm:text-2xl text-white">
                         Buscar cards
@@ -98,10 +98,10 @@ export default function ModalSelectCards({carregarCard}:Props) {
 
                 </div>
 
-                <footer className="mt-9 flex justify-end gap-2">
+                <footer className="mt-9 flex justify-center sm:justify-end gap-2">
                     <button
                         type="button"
-                        className="rounded cursor-pointer px-4 py-2 text-sm font-bold transition-colors bg-gray-800 text-gray-200 hover:bg-gray-700"
+                        className="rounded cursor-pointer w-2/4 sm:w-auto px-4 py-2 text-sm font-bold transition-colors bg-gray-800 text-gray-200 hover:bg-gray-700"
                         onClick={()=>{carregarCard(null)}}
                     >
                         Cancel
@@ -109,7 +109,7 @@ export default function ModalSelectCards({carregarCard}:Props) {
 
                     <button
                         type="button"
-                        className={`rounded ${card ? 'cursor-pointer bg-blue-600 hover:bg-blue-700' : 'bg-gray-500'} px-4 py-2 text-sm font-bold text-white transition-colors`}
+                        className={`rounded ${card ? 'cursor-pointer bg-blue-600 hover:bg-blue-700' : 'bg-gray-500'} w-2/4 sm:w-auto px-4 py-2 text-sm font-bold text-white transition-colors`}
                         disabled={!card}
                         onClick={()=>{carregarCard(card)}}
                     >

@@ -15,9 +15,19 @@ interface Props {
 export default function CarrosselCards({ listaDisplay, cardSelecionado, carregandoLista }: Props) {
     const [indexAtual, setIndexAtual] = useState(0);
     const [indexCardSelecionado, setIndexCardSelecionado] = useState<number|null>(null);
-    const totalSlides = Math.ceil(listaDisplay.length / 3);
     const [loadingCards, setLoadingCards] = useState<number[]>([]);
+    const [qtdCardsSlide, setQtdCardsSlide] = useState<number>(3);
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setQtdCardsSlide(window.innerWidth < 640 ? 1 : 3);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
+    const totalSlides = Math.ceil(listaDisplay.length / qtdCardsSlide);
 
     useEffect(() => {
         setIndexAtual(0);
@@ -58,9 +68,9 @@ export default function CarrosselCards({ listaDisplay, cardSelecionado, carregan
                         style={{ width: `${100 / totalSlides}%` }}
                     >
                     {listaDisplay
-                    .slice(slideIndex * 3, slideIndex * 3 + 3)
+                    .slice(slideIndex * qtdCardsSlide, slideIndex * qtdCardsSlide + qtdCardsSlide)
                     .map((card, index) => {
-                        const realIndex = slideIndex * 3 + index;
+                        const realIndex = slideIndex * qtdCardsSlide + index;
                         return (
                         <div key={realIndex} className="pt-10 px-3 pb-5">
                             {loadingCards.length != listaDisplay.length && (
@@ -72,7 +82,7 @@ export default function CarrosselCards({ listaDisplay, cardSelecionado, carregan
                             width={250}
                             height={400}
                             loading="eager"
-                            className={`object-cover h-[280px] w-[250px] md:w-[190px] cursor-pointer mb-5 rounded-2xl md:rounded-xl transition hover:scale-[105%] ${indexCardSelecionado === realIndex && 'shadow-[-1px_2px_39px_-4px_rgba(56,95,230,0.95)]'} ${loadingCards.length == listaDisplay.length ? '' : 'hidden'}`}
+                            className={`object-cover h-[320px] w-[220px] md:w-[190px] md:h-[280px] 2xl:w-[270px] 2xl:h-[380px] cursor-pointer mb-5 rounded-2xl md:rounded-xl transition hover:scale-[105%] ${indexCardSelecionado === realIndex && 'shadow-[-1px_2px_39px_-4px_rgba(56,95,230,0.95)]'} ${loadingCards.length == listaDisplay.length ? '' : 'hidden'}`}
                             onLoad={() => {
                                 marcarCardComoCarregado(realIndex);
                             }}
@@ -89,14 +99,14 @@ export default function CarrosselCards({ listaDisplay, cardSelecionado, carregan
 
             <button
                 onClick={slideAnterior}
-                className={`absolute ${indexAtual !== 0 && 'cursor-pointer hover:bg-gray-700'} top-1/2 left-0  transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded ml-10 disabled:opacity-50`}
+                className={`absolute ${indexAtual !== 0 && 'cursor-pointer hover:bg-gray-700'} top-1/2 left-0  transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded ${qtdCardsSlide == 3?'ml-10':'ml-2'} disabled:opacity-50`}
                 disabled={indexAtual === 0}
             >
                 ◀
             </button>
             <button
                 onClick={proximoSlide}
-                className={`absolute ${indexAtual !== totalSlides - 1 && 'cursor-pointer hover:bg-gray-700'} top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded mr-10 disabled:opacity-50`}
+                className={`absolute ${indexAtual !== totalSlides - 1 && 'cursor-pointer hover:bg-gray-700'} top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded ${qtdCardsSlide == 3?'mr-10':'mr-2'} disabled:opacity-50`}
                 disabled={indexAtual === totalSlides - 1}
             >
                 ▶
