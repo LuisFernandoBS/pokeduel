@@ -18,7 +18,7 @@ export default function ModalImagemCard({urlImagem,fecharImagem}:Props) {
         aria-modal="true"
         aria-labelledby="ModalImagemCard"
         >
-            <div className="flex flex-col w-full max-w-md min-w-[440px] h-[700px] justify-center text-center items-center rounded-lg p-6 shadow-lg">
+            <div className="flex flex-col w-full max-w-md min-w-[360px] sm:min-w-[440px] h-[700px] justify-center text-center items-center rounded-lg p-6 shadow-lg">
                 <div className="w-full">
                     <button
                             type="button"
@@ -43,7 +43,7 @@ export default function ModalImagemCard({urlImagem,fecharImagem}:Props) {
                     </button>
                 </div>
                 {!imgCarregada && (
-                    <div className="inset-0 bg-gray-600 animate-pulse rounded-2xl w-[420px] h-[600px]" />
+                    <div className="inset-0 bg-gray-600 animate-pulse rounded-2xl w-[360px] sm:w-[420px] h-[600px]" />
                 )}
                 <Image
                 src={`${urlImagem}/high.webp`}

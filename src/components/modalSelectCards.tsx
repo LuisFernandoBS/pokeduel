@@ -47,7 +47,7 @@ export default function ModalSelectCards({carregarCard}:Props) {
         aria-modal="true"
         aria-labelledby="modalTitle"
         >
-            <div className="w-full max-w-md min-w-[380px] md:min-w-[850px] 2xl:min-w-[1100px] h-[650px] rounded-lg p-6 shadow-lg bg-gray-900">
+            <div className="w-full max-w-md min-w-[360px] md:min-w-[850px] 2xl:min-w-[1100px] h-[650px] rounded-lg p-6 shadow-lg bg-gray-900">
                 <div className="flex items-start justify-between">
                     <h2 id="modalTitle" className="text-xl font-bold sm:text-2xl text-white">
                         Buscar cards
