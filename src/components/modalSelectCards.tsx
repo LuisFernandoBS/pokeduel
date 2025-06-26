@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Autocomplete from "./autocomplete";
+import Autocomplete from "./Autocomplete";
 import CarrosselCards from "./CarrosselCards";
 import { getCardById } from "../services/tcgdexService";
-import { useListaCard } from "../context/ListaCardsContext";
+import { useListaCard } from "../contexts/ListaCardsContext";
 
 interface Props {
   carregarCard:(card:any) => void;

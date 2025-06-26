@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import { useListaCard } from "../context/ListaCardsContext";
+import { useListaCard } from "../contexts/ListaCardsContext";
 
 interface AutocompleteProps {
   onSelecionar: (name: string) => void;

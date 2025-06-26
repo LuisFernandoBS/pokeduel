@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { compararTipos } from '@/utils/tipoVantagem';
-import { compararRaridade } from '@/utils/comparaRaridade';
+import { compararTipos } from '@/lib/tipoVantagem';
+import { compararRaridade } from '@/lib/comparaRaridade';
 import { useHistorico } from '@/hooks/useHistorico';
 
 interface Props {

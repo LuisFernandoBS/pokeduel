@@ -1,12 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Image from "next/image";
-import Header from "../components/header";
-import Card from "../components/card";
-import ModalSelectCards from "../components/modalSelectCards";
-import PainelComparativo from "../components/painelComparativo";
+import Header from "../components/Header";
+import Card from "../components/Card";
+import ModalSelectCards from "../components/ModalSelectCards";
+import PainelComparativo from "../components/PainelComparativo";
 import { getAllCards, getCardById } from "../services/tcgdexService";
-import { ListaCardProvider } from "../context/ListaCardsContext";
+import { ListaCardProvider } from "../contexts/ListaCardsContext";
 import { CartasExcluidasSet } from "../data/listaCartasExcluidas"
 
 interface CardSimples {
