@@ -32,7 +32,7 @@ export default function CarrosselCards({ listaDisplay, cardSelecionado, carregan
     useEffect(() => {
         setIndexAtual(0);
         setIndexCardSelecionado(null);
-        setLoadingCards([]);
+        setLoadingCards([]);        
     }, [listaDisplay]);
 
     const marcarCardComoCarregado = (index: number) => {

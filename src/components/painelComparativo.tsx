@@ -166,28 +166,28 @@ export default function PainelComparativo({ card1, card2, salvarCardVencedor }: 
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-gray-900 rounded-xl py-4 px-4">
             <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorHp} rounded-xl h-full py-2`}>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center" data-testid="comparacao-hp">
                     <h1 className="text-1xl font-bold text-white">❤️ HP</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{cardHp1} <span className='font-bold'>X</span> {cardHp2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorHp}`}>{nomeVencedorHp}</h1>
                 </div>
             </div>
             <div className={`col-span-1 row-start-1 flex justify-center items-center border-1 ${corVencedorAtaque} rounded-xl h-full py-2`}>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center" data-testid="comparacao-ataque">
                     <h1 className="text-1xl font-bold text-white">⚔️ Ataque</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{maiorAtaque1} <span className='font-bold'>X</span> {maiorAtaque2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorAtaque}`}>{nomeVencedorAtaque}</h1>
                 </div>
             </div>
             <div className={`col-span-2 sm:col-span-1 row-start-2 sm:row-start-1 flex justify-center items-center border-1 ${corVencedorTipo} rounded-xl h-full py-2`}>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center" data-testid="comparacao-tipo">
                     <h1 className="text-1xl font-bold text-white">Tipo</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{tipoIconesEmoji[cardTipo1]}{cardTipo1} <span className='font-bold'>X</span> {tipoIconesEmoji[cardTipo2]}{cardTipo2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorTipo}`}>{nomeVencedorTipo}</h1>
                 </div>
             </div>
             <div className={`col-span-2 sm:col-span-1 row-start-3 sm:row-start-1 flex justify-center items-center border-1 ${corVencedorRaridade} rounded-xl h-full py-2`}>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center" data-testid="comparacao-raridade">
                     <h1 className="text-1xl font-bold text-white">💎 Raridade</h1>
                     <h1 className="text-[16px] font-medium text-white text-center">{cardRaridade1} <span className='font-bold'>X</span> {cardRaridade2}</h1>
                     <h1 className={`text-1xl font-bold text-center ${corVencedorRaridade}`}>{nomeVencedorRaridade}</h1>

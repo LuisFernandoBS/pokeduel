@@ -84,7 +84,7 @@ export default function Home() {
     const listaCartasComImagem = retorno.filter((carta: any) => {
       const nome = carta.name?.trim();      
       return carta.image && nome && !CartasExcluidasSet.has(nome);
-    })
+    })    
     setListaCartas(listaCartasComImagem);
     setCarregandoServico(false);
   }

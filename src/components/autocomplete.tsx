@@ -67,7 +67,7 @@ return (
                                 onChange={(e) => {
                                     filtrarLista(e.target.value);
                                 }}
-                                onBlur={()=>{handleFiltroBlur}}
+                                onBlur={handleFiltroBlur}
                             />
                             <div className="text-gray-300 w-8 py-1 pl-2 mr-2 pr-1 flex items-center"
                             onClick={()=>{
