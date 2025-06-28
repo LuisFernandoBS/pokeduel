@@ -1,6 +1,6 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import Autocomplete from '@/components/Autocomplete'
-import { ListaCardProvider } from '@/contexts/ListaCardsContext'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import Autocomplete from '@/components/Autocomplete';
+import { ListaCardProvider } from '@/contexts/ListaCardsContext';
 
 describe('Autocomplete', () => {
   const nomeSelecionadoMock = jest.fn();

@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react'
-import Header from '@/components/Header'
+import { render, screen, fireEvent } from '@testing-library/react';
+import Header from '@/components/Header';
 
 const pushMock = jest.fn();
 

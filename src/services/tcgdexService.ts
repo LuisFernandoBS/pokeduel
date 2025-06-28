@@ -15,13 +15,3 @@ export const getCardById = async (id: string) => {
   const response = await tcgdex.get(`/cards/${id}`);
   return response.data;
 };
-
-export const getAllSets = async () => {
-  const response = await tcgdex.get("/sets");
-  return response.data;
-};
-
-export const getSetById = async (id: string) => {
-  const response = await tcgdex.get(`/sets/${id}`);
-  return response.data;
-};

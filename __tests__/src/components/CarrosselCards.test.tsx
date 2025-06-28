@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, act } from '@testing-library/react'
-import CarrosselCards from '@/components/CarrosselCards'
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import CarrosselCards from '@/components/CarrosselCards';
 
 const mockCards = [
     {
@@ -37,22 +37,29 @@ beforeAll(() => {
 })
 
 describe('CarrosselCards', () => {
+
+    const renderCarrosselCards = async () => {
+        await act(async () => {
+            render(<CarrosselCards listaDisplay={mockCards} carregandoLista={false} cardSelecionado={cardSelecionadoMock} />)
+        })
+    }
     
-    it('renderiza imagem de carregamento quando carregandoLista é true', () => {
-        render(<CarrosselCards listaDisplay={mockCards} carregandoLista={true} cardSelecionado={cardSelecionadoMock} />)
+    it('renderiza imagem de carregamento quando carregandoLista é true', async () => {
+        await act(async () => {
+            render(<CarrosselCards listaDisplay={mockCards} carregandoLista={true} cardSelecionado={cardSelecionadoMock} />)
+        })
+
         expect(screen.getByAltText(/Carregando/i)).toBeInTheDocument()
     })
 
-    it('renderiza os cards quando carregandoLista é false', () => {
-        render(<CarrosselCards listaDisplay={mockCards} carregandoLista={false} cardSelecionado={cardSelecionadoMock} />)
-
+    it('renderiza os cards quando carregandoLista é false', async () => {
+        await renderCarrosselCards()
         const imagens = screen.getAllByAltText('card')
         expect(imagens.length).toBe(mockCards.length)
     })
 
-    it('navega entre os slides ao clicar nos botões', () => {
-        render(<CarrosselCards listaDisplay={mockCards} carregandoLista={false} cardSelecionado={cardSelecionadoMock} />)
-
+    it('navega entre os slides ao clicar nos botões', async () => {
+        await renderCarrosselCards()
         const btnProximo = screen.getByText('▶')
         const btnAnterior = screen.getByText('◀')
 
@@ -61,12 +68,12 @@ describe('CarrosselCards', () => {
         expect(btnAnterior).not.toBeDisabled()
     })
 
-    it('dispara callback ao clicar em um card carregado', () => {
-        render(<CarrosselCards listaDisplay={mockCards} carregandoLista={false} cardSelecionado={cardSelecionadoMock} />)
+    it('dispara callback ao clicar em um card carregado', async () => {
+        await renderCarrosselCards()
 
         act(() => {
-        const imagens = document.querySelectorAll('img')
-        imagens.forEach(img => img.dispatchEvent(new Event('load')))
+            const imagens = document.querySelectorAll('img')
+            imagens.forEach(img => img.dispatchEvent(new Event('load')))
         })
 
         const imgs = document.querySelectorAll('img')
@@ -75,8 +82,8 @@ describe('CarrosselCards', () => {
         expect(cardSelecionadoMock).toHaveBeenCalled()
     })
 
-    it('não permite avançar além do último slide', () => {
-        render(<CarrosselCards listaDisplay={mockCards} carregandoLista={false} cardSelecionado={cardSelecionadoMock} />)
+    it('não permite avançar além do último slide', async () => {
+        await renderCarrosselCards()
 
         const btnProximo = screen.getByText('▶')
 
@@ -87,16 +94,16 @@ describe('CarrosselCards', () => {
         expect(btnProximo).toBeDisabled()
     })
     
-    it('não permite voltar além do primeiro slide', () => {
-        render(<CarrosselCards listaDisplay={mockCards} carregandoLista={false} cardSelecionado={cardSelecionadoMock} />)
+    it('não permite voltar além do primeiro slide', async () => {
+        await renderCarrosselCards()
         
         const btnAnterior = screen.getByText('◀')
         
         expect(btnAnterior).toBeDisabled()
     })
     
-    it('voltando para o primeiro slide', () => {
-        render(<CarrosselCards listaDisplay={mockCards} carregandoLista={false} cardSelecionado={cardSelecionadoMock} />)
+    it('voltando para o primeiro slide', async () => {
+        await renderCarrosselCards()
         
         const btnProximo = screen.getByText('▶')
         const btnAnterior = screen.getByText('◀')
@@ -108,5 +115,25 @@ describe('CarrosselCards', () => {
         fireEvent.click(btnAnterior)
 
         expect(btnAnterior).toBeDisabled()
+    })
+
+    it('responsividade para mobile', async () => {
+        Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 360 })
+        window.dispatchEvent(new Event('resize'))
+
+        await renderCarrosselCards()
+        
+        const btnProximo = screen.getByText('▶')
+        
+        fireEvent.click(btnProximo)
+        fireEvent.click(btnProximo)
+        fireEvent.click(btnProximo)
+
+        expect(btnProximo).toBeEnabled();
+
+        fireEvent.click(btnProximo)
+        fireEvent.click(btnProximo)
+
+        expect(btnProximo).toBeDisabled();
     })
 })

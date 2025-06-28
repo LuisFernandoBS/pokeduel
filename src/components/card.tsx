@@ -11,7 +11,6 @@ export default function Card({ card, numCard, cardVencedor }: Props) {
   const cardTipo = card?.types?.[0] || "Tipo da carta";
   const cardHp = card?.hp || "HP da carta";
   const cardRaridade = card?.rarity || "Raridade da carta";
-  const cardAtaques = card?.attacks || [];
 
   return (
     <article
@@ -19,7 +18,7 @@ export default function Card({ card, numCard, cardVencedor }: Props) {
     >
         {cardImagem ? (
           <img
-              alt=""
+              alt={card.name || 'Imagem da carta'}
               src={`${cardImagem ??'https://assets.tcgdex.net/pt/swsh/swsh8/86'}/high.webp`}
               className="h-96 w-70 object-cover"
           />
