@@ -71,7 +71,7 @@ export default function HistoricoPage() {
                                         filtrarDuelos(e.target.value);
                                     }}
                                 />
-                                <div className="text-gray-300 w-8 py-1 pl-2 mr-2 pr-1 flex items-center"
+                                <div className="text-gray-300 w-8 py-1 pl-2 mr-2 pr-1 flex items-center" data-testid="btn-filtro"
                                 onClick={()=>{
                                     (document?.querySelector("#filtroDuelos") as HTMLInputElement)?.focus();
                                 }}
@@ -114,7 +114,7 @@ export default function HistoricoPage() {
                                             </span>
                                             <Image
                                                 src={`${duelo.card2.img}/high.webp`}
-                                                alt="card1"
+                                                alt="card2"
                                                 width={50}
                                                 height={80}
                                                 className="object-cover ml-3 cursor-pointer"
