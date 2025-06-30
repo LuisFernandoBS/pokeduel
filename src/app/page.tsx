@@ -34,11 +34,6 @@ export default function Home() {
     carregarListaDeCartas();
   }, []);
 
-  // useEffect(() => {
-  //   loop(listaCartas);
-  // }, [listaCartas]);
-
-
   const trocarCard = (numCard:number) => {
     setAnimacaoAtiva(numCard);
     setTimeout(()=>{
@@ -88,34 +83,6 @@ export default function Home() {
     setListaCartas(listaCartasComImagem);
     setCarregandoServico(false);
   }
-
-  const sortearCarta = () => {
-    const randomIndex = Math.floor(Math.random() * listaCartas.length);
-    const cartaSorteada:CardSimples = listaCartas[randomIndex];
-    const cartaCompleta = getCardById(cartaSorteada.id);
-    return cartaCompleta;
-  }
-
-  // const loop = async (lista: any) => {
-  //   const energiasExistentes = new Set<string>();
-  //   const treinadoresExistentes = new Set<string>();
-
-  //   const promessas = lista.map(async (carta: any) => {
-  //     const cartaCompleta = await getCardById(carta.id);
-  //     if (!CartasExcluidasSet.has(carta.nome)) {
-  //       if (cartaCompleta.category == "Treinador") {
-  //         energiasExistentes.add(cartaCompleta.name);
-  //         setEnergiaExistentes(Array.from(energiasExistentes));
-  //       }else if(cartaCompleta.category == "Energia"){
-  //         treinadoresExistentes.add(cartaCompleta.name);
-  //         setTreinadoresExistentes(Array.from(treinadoresExistentes));
-  //       }
-  //     }
-  //   });
-
-  //   await Promise.all(promessas);
-  // };
-
 
 
   return (
