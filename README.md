@@ -57,6 +57,26 @@ PokeDuel é uma aplicação web desenvolvida com **React + Next.js** que permite
 
 ---
 
+## 🖼️ Screenshots
+
+### 🔍 Página de Duelo
+
+![Página de duelo entre dois cards Pokémon](public/screenshots/duelos.png)
+
+### 📜 Página de Histórico
+
+![Histórico com filtros e vencedores](public/screenshots/historico.png)
+
+### 📊 Dashboard Estatístico
+
+![Dashboard com gráficos e estatísticas dos duelos](public/screenshots/dashboard.png)
+
+### 📱 Responsividade
+
+![Visualização responsiva em diferentes dispositivos](public/screenshots/responsividade-pokeduel.png)
+
+---
+
 ## 🚀 Instalação e Execução
 
 ```bash
@@ -89,13 +109,14 @@ npm run test -- --coverage
 ```
 src/
 ├── features/               # Organização por funcionalidades
-│   ├── duelo/              # Lógica de duelo entre cards
 │   ├── historico/          # Página e componentes do histórico
 │   └── dashboard/          # Página e gráficos da dashboard
+├── components/             # Componentes reutilizáveis
 ├── hooks/                  # Hooks customizados
 ├── context/                # Context API para estado global
+├── data/                   # Listas de cartas excluídas (energias e treinadores)
 ├── services/               # Configurações de requisições (axios)
-└── types/                  # Tipagens TypeScript
+└── lib/                    # Funções utilitárias de lógica de comparação (raridade e tipo)
 ```
 
 ---
