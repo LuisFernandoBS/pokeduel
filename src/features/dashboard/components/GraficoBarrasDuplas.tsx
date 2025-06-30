@@ -5,8 +5,6 @@ import TooltipCustom from './TooltipCustom';
 
 export default function GraficoBarrasDuplas ({dados}: { dados: { nomeCard: string; hp: number; ataque:number}[] }) {    
     useEffect(() => {
-        // console.log("Dados recebidos para o gráfico de barras:", dados);
-        
         if (!dados || dados.length === 0) {
             console.error("Dados inválidos para o gráfico de barras.");
         }

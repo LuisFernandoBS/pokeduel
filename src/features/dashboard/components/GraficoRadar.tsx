@@ -28,8 +28,6 @@ export default function GraficoRadar ({dados}: { dados: any[] }) {
     };
 
     useEffect(() => {
-        // console.log("Dados recebidos para o gráfico de radar:", dados);
-        
         if (!dados || dados.length === 0) {
             console.error("Dados inválidos para o gráfico de barras.");
             return;
